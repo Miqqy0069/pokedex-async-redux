@@ -1,9 +1,6 @@
 import 'package:dio/dio.dart';
 
 class ApiClient {
-
-
-
   late Dio dio;
 
   static const String baseUrl = 'https://pokeapi.co/api/v2';
@@ -17,6 +14,4 @@ class ApiClient {
       ));
 
   }
-
-
 }
