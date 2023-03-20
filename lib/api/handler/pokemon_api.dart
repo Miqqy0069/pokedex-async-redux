@@ -18,10 +18,8 @@ class PokemonApi {
     required String limit,
   }) async {
     final queryParameters = <String, dynamic>{};
-
     queryParameters[queryParamLimit] = limit;
     queryParameters[queryParamOffset] = offset;
-
     final uri = baseUri.replace(
         queryParameters: queryParameters, path: '${baseUri.path}$endPointPokemon');
     return await apiClient.dio.getUri(uri).then((response) {
