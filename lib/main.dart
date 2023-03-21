@@ -12,7 +12,6 @@ Future<void> main() async {
     actionObservers: kReleaseMode ? null : [ConsoleActionObserver<AppState>()],
   );
 
-
   //TODO: To be removed (Trial) (For debugging only)
   final pokemons = await ApiService().pokemonApi.getPokemonList(offset: '0', limit: '151');
   pokemons;

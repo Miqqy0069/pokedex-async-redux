@@ -14,7 +14,6 @@ class PokemonApi {
   final ApiClient apiClient;
   final Uri baseUri;
 
-
   Future<List<Pokemon>> getPokemonList({
     required String offset,
     required String limit,
@@ -36,3 +35,4 @@ class PokemonApi {
     });
   }
 }
+
