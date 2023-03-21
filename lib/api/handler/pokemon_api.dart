@@ -19,8 +19,7 @@ class PokemonApi {
     final queryParameters = <String, dynamic>{};
     queryParameters['limit'] = limit;
     queryParameters['offset'] = offset;
-    final uri = baseUri.replace(
-        queryParameters: queryParameters, path: '${baseUri.path}$endPointPokemon');
+    final uri = baseUri.replace(queryParameters: queryParameters, path: '${baseUri.path}$endPointPokemon');
     return await apiClient.dio.getUri(uri).then((response) {
       return response.data['results']
           .map<Pokemon>((dynamic data) => Pokemon.fromJson(data as Json))
