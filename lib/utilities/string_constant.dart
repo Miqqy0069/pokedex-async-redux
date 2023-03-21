@@ -1,4 +1,0 @@
-
-
-const emptyString = '';
-const homePageText = '';

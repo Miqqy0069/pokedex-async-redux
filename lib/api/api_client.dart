@@ -5,13 +5,12 @@ class ApiClient {
 
   static const String baseUrl = 'https://pokeapi.co/api/v2';
 
-  ApiClient(){
+  ApiClient() {
     dio = Dio()
       ..options.baseUrl = baseUrl
       ..interceptors.add(QueuedInterceptorsWrapper(
         onRequest: (options, handler) => handler.next(options),
         onError: (error, handler) => handler.reject(error),
       ));
-
   }
 }

@@ -1,12 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pokedex_async_redux/utilities/string_constants.dart';
 
 part 'pokemon.freezed.dart';
 
 part 'pokemon.g.dart';
 
 @freezed
-class Pokemon with _$Pokemon{
+class Pokemon with _$Pokemon {
   factory Pokemon({
     @JsonKey(name: 'name') required String name,
     @JsonKey(name: 'url') required String url,
