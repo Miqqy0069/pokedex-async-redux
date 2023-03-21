@@ -29,9 +29,9 @@ class PokemonApi {
 
   Future<PokemonDetails> getPokemonDetails({required String name}) async {
     final uri = baseUri.replace(path: '${baseUri.path}/pokemon/$name/');
-    return await apiClient.dio.getUri(uri).then((response) {
-      return PokemonDetails.fromJson(jsonDecode(response.toString()));
-    });
+    final response = await apiClient.dio.getUri(uri);
+
+    return PokemonDetails.fromJson(response.data);
   }
 }
 
