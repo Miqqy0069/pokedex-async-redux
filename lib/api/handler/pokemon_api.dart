@@ -1,13 +1,9 @@
-<<<<<<< HEAD
 import 'dart:convert';
 import 'package:pokedex_async_redux/api/api_client.dart';
 import 'package:pokedex_async_redux/api/model/pokemon.dart';
 import 'package:pokedex_async_redux/api/model/pokemon_details.dart';
 
 typedef Json = Map<String, dynamic>;
-=======
-import 'package:pokedex_async_redux/api/api_client.dart';
->>>>>>> 1539966531f205e0de9a6c07cdaa9f7028c7e853
 
 class PokemonApi {
   PokemonApi({
@@ -18,7 +14,7 @@ class PokemonApi {
   final ApiClient apiClient;
   final Uri baseUri;
 
-<<<<<<< HEAD
+
   Future<List<Pokemon>> getPokemonList({
     required String offset,
     required String limit,
@@ -39,7 +35,4 @@ class PokemonApi {
       return PokemonDetails.fromJson(jsonDecode(response.toString()));
     });
   }
-=======
-//TODO: to be continued...
->>>>>>> 1539966531f205e0de9a6c07cdaa9f7028c7e853
 }

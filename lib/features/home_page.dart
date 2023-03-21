@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'package:pokedex_async_redux/api/api_service.dart';
-=======
->>>>>>> 1539966531f205e0de9a6c07cdaa9f7028c7e853
 import 'package:pokedex_async_redux/utilities/string_constants.dart';
 
 class HomePage extends StatelessWidget {

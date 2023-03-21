@@ -11,11 +11,6 @@ class AppState with _$AppState {
     @Default(emptyString) String sample,
   }) = _AppState;
 
-<<<<<<< HEAD
+
   factory AppState.fromJson(Map<String, dynamic> json) => _$AppStateFromJson(json);
 }
-=======
-  factory AppState.fromJson(Map<String, dynamic> json) =>
-      _$AppStateFromJson(json);
-}
->>>>>>> 1539966531f205e0de9a6c07cdaa9f7028c7e853

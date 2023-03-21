@@ -1,4 +1,4 @@
 
 
 const emptyString = '';
-const homePageText = ''
+const homePageText = 'Home Page';
