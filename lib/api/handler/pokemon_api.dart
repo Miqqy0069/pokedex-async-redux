@@ -27,9 +27,8 @@ class PokemonApi {
     });
   }
 
-  Future<PokemonDetails> getPokemonDetails({required int id}) async {
-    final uri = baseUri.replace(path: '${baseUri.path}/pokemon/$id/');
-    uri;
+  Future<PokemonDetails> getPokemonDetails({required String name}) async {
+    final uri = baseUri.replace(path: '${baseUri.path}/pokemon/$name/');
     return await apiClient.dio.getUri(uri).then((response) {
       return PokemonDetails.fromJson(jsonDecode(response.toString()));
     });

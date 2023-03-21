@@ -1,12 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pokedex_async_redux/api/model/moves_info.dart';
 
-part 'pokemon_moves.freezed.dart';
+part 'moves.freezed.dart';
 
-part 'pokemon_moves.g.dart';
+part 'moves.g.dart';
 
 @freezed
-class Moves with _$PokemonMoves {
+class Moves with _$Moves {
   const factory Moves({
     @JsonKey(name: 'move') required MovesInfo move,
   }) = _Moves;
