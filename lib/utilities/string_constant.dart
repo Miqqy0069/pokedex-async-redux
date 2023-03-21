@@ -1,0 +1,4 @@
+
+
+const emptyString = '';
+const homePageText = ''
