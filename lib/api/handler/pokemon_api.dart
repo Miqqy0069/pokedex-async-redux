@@ -1,6 +1,7 @@
+import 'dart:convert';
 import 'package:pokedex_async_redux/api/api_client.dart';
 import 'package:pokedex_async_redux/api/model/pokemon.dart';
-import 'package:pokedex_async_redux/utilities/string_constants.dart';
+import 'package:pokedex_async_redux/api/model/pokemon_details.dart';
 
 typedef Json = Map<String, dynamic>;
 
@@ -18,16 +19,19 @@ class PokemonApi {
     required String limit,
   }) async {
     final queryParameters = <String, dynamic>{};
-
-    queryParameters[queryParamLimit] = limit;
-    queryParameters[queryParamOffset] = offset;
-
-    final uri = baseUri.replace(
-        queryParameters: queryParameters, path: '${baseUri.path}$endPointPokemon');
+    queryParameters['limit'] = limit;
+    queryParameters['offset'] = offset;
+    final uri = baseUri.replace(queryParameters: queryParameters, path: '${baseUri.path}/pokemon');
     return await apiClient.dio.getUri(uri).then((response) {
-      return response.data[responseDataResult]
-          .map<Pokemon>((dynamic data) => Pokemon.fromJson(data as Json))
-          .toList();
+      return response.data['results'].map<Pokemon>((dynamic data) => Pokemon.fromJson(data as Json)).toList();
+    });
+  }
+
+  Future<PokemonDetails> getPokemonDetails({required int id}) async {
+    final uri = baseUri.replace(path: '${baseUri.path}/pokemon/$id/');
+    uri;
+    return await apiClient.dio.getUri(uri).then((response) {
+      return PokemonDetails.fromJson(jsonDecode(response.toString()));
     });
   }
 }

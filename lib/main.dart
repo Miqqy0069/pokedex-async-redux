@@ -5,7 +5,7 @@ import 'package:pokedex_async_redux/features/home_page.dart';
 import 'package:pokedex_async_redux/state/app_state.dart';
 import 'package:flutter/material.dart';
 
-  //TODO: Future to be removed.
+//TODO: Future to be removed.
 Future<void> main() async {
   final store = Store<AppState>(
     initialState: AppState(),
@@ -15,6 +15,10 @@ Future<void> main() async {
   //TODO: To be removed (Trial) (For debugging only)
   final pokemons = await ApiService().pokemonApi.getPokemonList(offset: '0', limit: '151');
   pokemons;
+
+  //TODO: To be removed (Trial) (For debugging only)
+  final pokemonDetails = await ApiService().pokemonApi.getPokemonDetails(id: 3);
+  pokemonDetails;
 
   runApp(
     StoreProvider(
