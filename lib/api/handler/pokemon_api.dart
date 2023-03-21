@@ -18,12 +18,12 @@ class PokemonApi {
     required String limit,
   }) async {
     final queryParameters = <String, dynamic>{};
-    queryParameters[queryParamLimit] = limit;
-    queryParameters[queryParamOffset] = offset;
+    queryParameters['limit'] = limit;
+    queryParameters['offset'] = offset;
     final uri = baseUri.replace(
-        queryParameters: queryParameters, path: '${baseUri.path}$endPointPokemon');
+        queryParameters: queryParameters, path: '${baseUri.path}/pokemon');
     return await apiClient.dio.getUri(uri).then((response) {
-      return response.data[responseDataResult]
+      return response.data['results']
           .map<Pokemon>((dynamic data) => Pokemon.fromJson(data as Json))
           .toList();
     });
