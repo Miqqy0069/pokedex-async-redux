@@ -6,10 +6,10 @@ part 'pokemon_moves.freezed.dart';
 part 'pokemon_moves.g.dart';
 
 @freezed
-class PokemonMoves with _$PokemonMoves {
-  const factory PokemonMoves({
+class Moves with _$PokemonMoves {
+  const factory Moves({
     @JsonKey(name: 'move') required MovesInfo move,
-  }) = _PokemonMoves;
+  }) = _Moves;
 
-  factory PokemonMoves.fromJson(Map<String, dynamic> json) => _$PokemonMovesFromJson(json);
+  factory Moves.fromJson(Map<String, dynamic> json) => _$MovesFromJson(json);
 }

@@ -6,11 +6,11 @@ part 'pokemon_stats.freezed.dart';
 part 'pokemon_stats.g.dart';
 
 @freezed
-class PokemonStats with _$PokemonStats {
-  const factory PokemonStats({
+class Stats with _$PokemonStats {
+  const factory Stats({
     @JsonKey(name: 'base_stat') required double baseStat,
     @JsonKey(name: 'stat') required StatsInfo stat,
-  }) = _PokemonStats;
+  }) = _Stats;
 
-  factory PokemonStats.fromJson(Map<String, dynamic> json) => _$PokemonStatsFromJson(json);
+  factory Stats.fromJson(Map<String, dynamic> json) => _$StatsFromJson(json);
 }

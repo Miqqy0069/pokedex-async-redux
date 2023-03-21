@@ -6,10 +6,10 @@ part 'pokemon_ability.freezed.dart';
 part 'pokemon_ability.g.dart';
 
 @freezed
-class PokemonAbility with _$PokemonAbility {
-  const factory PokemonAbility({
+class Ability with _$PokemonAbility {
+  const factory Ability({
     @JsonKey(name: 'ability') required AbilityInfo ability,
-  }) = _PokemonAbility;
+  }) = _Ability;
 
-  factory PokemonAbility.fromJson(Map<String, dynamic> json) => _$PokemonAbilityFromJson(json);
+  factory Ability.fromJson(Map<String, dynamic> json) => _$AbilityFromJson(json);
 }
