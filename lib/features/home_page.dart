@@ -8,6 +8,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     StoreProvider.dispatch(context, GetPokemonsAction());
+    StoreProvider.dispatch(context, GetPokemonDetailsAction(pokemonName: 'ditto'));
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
