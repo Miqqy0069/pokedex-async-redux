@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:pokedex_async_redux/api/api_client.dart';
 import 'package:pokedex_async_redux/api/model/pokemon.dart';
 import 'package:pokedex_async_redux/api/model/pokemon_details.dart';
@@ -34,4 +33,3 @@ class PokemonApi {
     return PokemonDetails.fromJson(response.data);
   }
 }
-
