@@ -17,7 +17,10 @@ class PokemonOverviewConnector extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.red,
           ),
-          home: PokemonOverviewPage(pokemons: vm.pokemons, pokemonDetails: null,)),
+          home: PokemonOverviewPage(
+            pokemons: vm.pokemons,
+            pokemonDetails: null,
+          )),
     );
   }
 }

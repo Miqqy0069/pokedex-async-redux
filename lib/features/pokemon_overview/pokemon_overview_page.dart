@@ -6,12 +6,12 @@ import 'package:pokedex_async_redux/utilities/string_constants.dart';
 class PokemonOverviewPage extends StatelessWidget {
   const PokemonOverviewPage({
     required this.pokemons,
-    Key? key, required this.pokemonDetails,
+    Key? key,
+    required this.pokemonDetails,
   }) : super(key: key);
 
   final List<Pokemon> pokemons;
   final PokemonDetails? pokemonDetails;
-
 
   @override
   Widget build(BuildContext context) {
