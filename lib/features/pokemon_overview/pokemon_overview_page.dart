@@ -17,7 +17,7 @@ class PokemonOverviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pokemon List'),
+        title: const Text(pokedexTitle),
       ),
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -35,7 +35,7 @@ class PokemonOverviewPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.network(
-                  '$imageURL$pokemonIndex.png',
+                  '$imageURL$pokemonIndex$dotPng',
                   height: 150,
                 ),
                 Text(pokemon.name),
