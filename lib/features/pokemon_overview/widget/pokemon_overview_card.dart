@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_async_redux/utilities/constants.dart';
 
 class PokemonOverviewCard extends StatelessWidget {
   const PokemonOverviewCard({
@@ -17,7 +18,7 @@ class PokemonOverviewCard extends StatelessWidget {
         children: [
           Image.network(
             imgUrl,
-            height: 150,
+            height: defaultOneHundredFiftyDouble,
           ),
           Text(pokemonName),
         ],
