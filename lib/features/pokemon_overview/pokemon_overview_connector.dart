@@ -14,12 +14,9 @@ class PokemonOverviewConnector extends StatelessWidget {
       vm: () => PokemonOverviewVmFactory(),
       onInit: (store) => store.dispatchAsync(GetPokemonsAction()),
       builder: (context, vm) => MaterialApp(
-          theme: ThemeData(
-            primarySwatch: Colors.red,
-          ),
-          home: PokemonOverviewPage(
-            pokemons: vm.pokemons,
-          )),
+        theme: ThemeData(primarySwatch: Colors.red),
+        home: PokemonOverviewPage(pokemons: vm.pokemons),
+      ),
     );
   }
 }

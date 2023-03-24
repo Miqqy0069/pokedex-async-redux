@@ -1,6 +1,6 @@
+import 'package:pokedex_async_redux/utilities/constants.dart';
+
 extension StringExtension on String {
-  String toFirstLetterUpperCase() {
-    if (isEmpty) return '';
-    return '${this[0].toUpperCase()}${substring(1)}';
-  }
+  String get pokemonId => split('/')[6];
+  String get toCustomUrl => imageURL.replaceFirst(indexKey, pokemonId);
 }
