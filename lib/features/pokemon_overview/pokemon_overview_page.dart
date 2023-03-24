@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_async_redux/api/model/pokemon.dart';
-import 'package:pokedex_async_redux/api/model/pokemon_details.dart';
+import 'package:pokedex_async_redux/features/pokemon_overview/widget/pokemon_overview_card.dart';
 import 'package:pokedex_async_redux/utilities/string_constants.dart';
 import 'package:pokedex_async_redux/utilities/string_extension.dart';
 
@@ -8,11 +8,9 @@ class PokemonOverviewPage extends StatelessWidget {
   const PokemonOverviewPage({
     required this.pokemons,
     Key? key,
-    required this.pokemonDetails,
   }) : super(key: key);
 
   final List<Pokemon> pokemons;
-  final PokemonDetails? pokemonDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +29,9 @@ class PokemonOverviewPage extends StatelessWidget {
         itemBuilder: (context, index) {
           final pokemon = pokemons[index];
           final pokemonIndex = index + 1;
-          return Card(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.network(
-                  '$imageURL$pokemonIndex$dotPng',
-                  height: 150,
-                ),
-                Text(pokemon.name.toFirstLetterUpperCase()),
-              ],
-            ),
+          return PokemonOverviewCard(
+            pokemonName: pokemon.name.toFirstLetterUpperCase(),
+            imgUrl: '$imageURL$pokemonIndex$dotPng',
           );
         },
       ),

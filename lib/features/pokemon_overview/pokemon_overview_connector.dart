@@ -19,7 +19,6 @@ class PokemonOverviewConnector extends StatelessWidget {
           ),
           home: PokemonOverviewPage(
             pokemons: vm.pokemons,
-            pokemonDetails: null,
           )),
     );
   }
