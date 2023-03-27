@@ -25,6 +25,7 @@ class PokemonOverviewPage extends StatelessWidget {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       });
     }
+
     return Scaffold(
       appBar: AppBar(title: const Text(pokedexTitle)),
       body: pokemons.when(
