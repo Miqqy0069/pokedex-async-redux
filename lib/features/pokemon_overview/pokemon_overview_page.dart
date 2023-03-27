@@ -18,9 +18,9 @@ class PokemonOverviewPage extends StatelessWidget {
       appBar: AppBar(title: const Text(pokedexTitle)),
       body: pokemons.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (String? errorMessage) => Center(
+        error: (errorMessage) => Center(
           child: Text(
-            errorMessage!,
+            errorMessage ?? emptyString,
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
