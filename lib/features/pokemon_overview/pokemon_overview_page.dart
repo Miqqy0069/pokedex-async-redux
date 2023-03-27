@@ -20,7 +20,7 @@ class PokemonOverviewPage extends StatelessWidget {
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (String? errorMessage) => Center(
           child: Text(
-            errorMessage ?? errorMessageText,
+            errorMessage!,
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
