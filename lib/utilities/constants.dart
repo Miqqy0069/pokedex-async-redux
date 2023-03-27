@@ -7,3 +7,5 @@ const limit = '151';
 const pokedexTitle = 'Pokedex';
 const imageURL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/[index].png';
 const indexKey = '[index]';
+
+const errorMessageText = 'Something went wrong';
