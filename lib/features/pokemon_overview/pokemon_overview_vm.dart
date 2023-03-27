@@ -12,7 +12,7 @@ class PokemonOverviewVmFactory extends VmFactory<AppState, PokemonOverviewConnec
 
   Async<List<Pokemon>> _pokemons() {
     if (state.wait.isWaitingFor(GetPokemonsAction.key)) return const Async.loading();
-    if (state.pokemons.isEmpty) return const Async.error(pokemonOverviewPageErrorMessage);
+    if (state.pokemons.isEmpty) return const Async.error(snackBarErrorMessage);
 
     return Async(state.pokemons);
   }

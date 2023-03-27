@@ -19,14 +19,19 @@ class PokemonOverviewPage extends StatelessWidget {
       body: pokemons.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (errorMessage) {
-          _noPokemonAvailableDialog(
-            context,
-            errorMessage,
-          );
-          return Center(
-            child: Text(
+          final snackBar = SnackBar(
+            content: Text(
               errorMessage ?? emptyString,
-              style: const TextStyle(
+              style: const TextStyle(color: Colors.red),
+            ),
+          );
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          });
+          return const Center(
+            child: Text(
+              pokemonOverviewPageErrorMessage ?? emptyString,
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -49,17 +54,5 @@ class PokemonOverviewPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void _noPokemonAvailableDialog(BuildContext context, errorMessage) {
-    const snackBar = SnackBar(
-      content: Text(
-        snackBarErrorMessage,
-        style: TextStyle(color: Colors.red),
-      ),
-    );
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    });
   }
 }
