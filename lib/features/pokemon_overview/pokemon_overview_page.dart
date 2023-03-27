@@ -48,14 +48,13 @@ class PokemonOverviewPage extends StatelessWidget {
     );
   }
 
-  _showErrorMessageSnackBar(context, errorMessage) {
+  void _showErrorMessageSnackBar(BuildContext context, String? errorMessage) {
     final SnackBar snackBar = SnackBar(
-        content: Text(
-      errorMessage ?? emptyString,
-      style: const TextStyle(
-        color: Colors.red,
+      content: Text(
+        errorMessage ?? emptyString,
+        style: const TextStyle(color: Colors.red),
       ),
-    ));
+    );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
