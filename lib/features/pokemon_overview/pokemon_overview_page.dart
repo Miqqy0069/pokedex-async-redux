@@ -18,13 +18,19 @@ class PokemonOverviewPage extends StatelessWidget {
       appBar: AppBar(title: const Text(pokedexTitle)),
       body: pokemons.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (errorMessage) => Center(
-          child: Text(
-            errorMessage ?? emptyString,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
-          ),
-        ),
+        error: (errorMessage) {
+          WidgetsBinding.instance.addPostFrameCallback((_) => _showErrorMessageSnackBar(context, errorMessage));
+          return const Center(
+            child: Text(
+              noPokemonsAvailableLabel,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          );
+        },
         (data) => GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -40,5 +46,15 @@ class PokemonOverviewPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _showErrorMessageSnackBar(BuildContext context, String? errorMessage) {
+    final SnackBar snackBar = SnackBar(
+      content: Text(
+        errorMessage ?? emptyString,
+        style: const TextStyle(color: Colors.red),
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
