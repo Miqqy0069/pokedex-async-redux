@@ -8,4 +8,5 @@ const pokedexTitle = 'Pokedex';
 const imageURL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/[index].png';
 const indexKey = '[index]';
 
-const errorMessageText = 'No Pokemons Available';
+const snackBarErrorMessage = 'Something went wrong!';
+const pokemonOverviewPageErrorMessage = 'No Pokemons Available';

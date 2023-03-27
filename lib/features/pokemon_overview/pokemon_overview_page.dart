@@ -14,28 +14,22 @@ class PokemonOverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void noPokemonAvailableDialog(errorMessage) {
-      final snackBar = SnackBar(
-        content: Text(
-          '$errorMessage',
-          style: const TextStyle(color: Colors.red),
-        ),
-      );
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      });
-    }
-
     return Scaffold(
       appBar: AppBar(title: const Text(pokedexTitle)),
       body: pokemons.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (errorMessage) {
-          noPokemonAvailableDialog(errorMessage);
+          _noPokemonAvailableDialog(
+            context,
+            errorMessage,
+          );
           return Center(
             child: Text(
               errorMessage ?? emptyString,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
               textAlign: TextAlign.center,
             ),
           );
@@ -55,5 +49,17 @@ class PokemonOverviewPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _noPokemonAvailableDialog(BuildContext context, errorMessage) {
+    const snackBar = SnackBar(
+      content: Text(
+        snackBarErrorMessage,
+        style: TextStyle(color: Colors.red),
+      ),
+    );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    });
   }
 }
