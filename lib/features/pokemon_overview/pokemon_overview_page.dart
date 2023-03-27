@@ -14,17 +14,31 @@ class PokemonOverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void noPokemonAvailableDialog(errorMessage) {
+      final snackBar = SnackBar(
+        content: Text(
+          '$errorMessage',
+          style: const TextStyle(color: Colors.red),
+        ),
+      );
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      });
+    }
     return Scaffold(
       appBar: AppBar(title: const Text(pokedexTitle)),
       body: pokemons.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (errorMessage) => Center(
-          child: Text(
-            errorMessage ?? emptyString,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
-          ),
-        ),
+        error: (errorMessage) {
+          noPokemonAvailableDialog(errorMessage);
+          return Center(
+            child: Text(
+              errorMessage ?? emptyString,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+          );
+        },
         (data) => GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
