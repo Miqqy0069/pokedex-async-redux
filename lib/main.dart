@@ -4,6 +4,8 @@ import 'package:pokedex_async_redux/features/pokemon_overview/pokemon_overview_c
 import 'package:pokedex_async_redux/state/app_state.dart';
 import 'package:flutter/material.dart';
 
+import 'features/pokemon_details/pokemon_details_connector.dart';
+
 void main() {
   final store = Store<AppState>(
     initialState: AppState(),
@@ -13,7 +15,15 @@ void main() {
   runApp(
     StoreProvider(
       store: store,
-      child: const PokemonOverviewConnector(),
+      child: MaterialApp(
+        routes: routes,
+        theme: ThemeData(primarySwatch: Colors.red),
+      ),
     ),
   );
 }
+
+final routes = {
+  '/': (BuildContext context) => const PokemonOverviewConnector(),
+  PokemonDetailsConnector.routeName: (BuildContext context) => const PokemonDetailsConnector()
+};

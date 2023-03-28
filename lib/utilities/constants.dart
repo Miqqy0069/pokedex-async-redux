@@ -10,3 +10,13 @@ const indexKey = '[index]';
 
 const errorMessage = 'Something went wrong!';
 const noPokemonsAvailableLabel = 'No Pokemons Available';
+const pokemonDetailsUnavailableLabel = 'Pokemon Details Unavailable';
+
+const statsLabel = 'Stats';
+const movesLabel = 'Moves';
+const abilitiesLabel = 'Abilities';
+const baseExperienceLabel = 'Base Experience';
+const weightLabel = 'Weight';
+const heightLabel = 'Height';
+const pokemonInformationLabel = 'Pokemon Information';
+const pokemonDetailsAppbarTitle = 'Pokemon Details';
