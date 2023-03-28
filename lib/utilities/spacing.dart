@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
 
-class HorizontalSpace extends StatelessWidget {
-  final double width;
-  const HorizontalSpace({
-    super.key,
-    required this.width,
-  });
+class VerticalSpace extends StatelessWidget {
+  const VerticalSpace({
+    required this.height,
+    Key? key,
+  }) : super(key: key);
+
+  final double height;
+
   @override
-  Widget build(BuildContext context) => SizedBox(width: width);
+  Widget build(BuildContext context) => SizedBox(
+    height: height,
+  );
 }
 
-class VerticalSpace extends StatelessWidget {
-  final double height;
-  const VerticalSpace({
-    super.key,
-    required this.height,
-  });
+class HorizontalSpace extends StatelessWidget {
+  const HorizontalSpace({
+    required this.width,
+    Key? key,
+  }) : super(key: key);
+
+  final double width;
+
   @override
-  Widget build(BuildContext context) => SizedBox(height: height);
+  Widget build(BuildContext context) => SizedBox(
+    width: width,
+  );
 }

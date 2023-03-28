@@ -35,7 +35,7 @@ class GetPokemonDetailsAction extends LoadingAction {
   }
 }
 
-/// Dispose PokemonDetailsAction on store
+/// Disposes the state of the PokemonDetailsPage if the user goes back to the overview page
 class ClearPokemonDetailsAction extends ReduxAction<AppState> {
   @override
   AppState reduce() => state.copyWith(pokemonDetails: null);
