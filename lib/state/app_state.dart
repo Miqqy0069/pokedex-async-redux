@@ -13,6 +13,7 @@ class AppState with _$AppState {
     @Default('') String sample,
     @Default(<Pokemon>[]) List<Pokemon> pokemons,
     @Default(null) PokemonDetails? pokemonDetails,
+    @Default(<Pokemon>[]) List<Pokemon> searchedPokemons,
 
     //ignored by state
     @Default(Wait.empty) @JsonKey(ignore: true) Wait wait,

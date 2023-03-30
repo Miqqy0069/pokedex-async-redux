@@ -7,24 +7,24 @@ import 'package:pokedex_async_redux/utilities/string_extension.dart';
 class PokemonOverviewCard extends StatelessWidget {
   const PokemonOverviewCard({
     Key? key,
-    required this.pokemon,
+    required this.pokemons,
   }) : super(key: key);
 
-  final Pokemon pokemon;
+  final Pokemon pokemons;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _navigateToPokemonDetailsPage(context, pokemon.name),
+      onTap: () => _navigateToPokemonDetailsPage(context, pokemons.name),
       child: Card(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.network(
-              pokemon.url.toCustomUrl,
+              pokemons.url.toCustomUrl,
               height: 150,
             ),
-            Text(pokemon.name.capitalize()),
+            Text(pokemons.name.capitalize()),
           ],
         ),
       ),
