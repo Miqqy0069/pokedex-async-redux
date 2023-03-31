@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:async_redux/async_redux.dart';
+import 'package:dartx/dartx.dart';
 import 'package:pokedex_async_redux/api/api_service.dart';
 import 'package:pokedex_async_redux/state/action/actions.dart';
 import 'package:pokedex_async_redux/state/app_state.dart';
@@ -35,8 +36,29 @@ class GetPokemonDetailsAction extends LoadingAction {
   }
 }
 
+/// Searching specific pokemon from pokemon api
+class SearchPokemonsAction extends ReduxAction<AppState> {
+  SearchPokemonsAction({required this.searchInput});
+
+  final String searchInput;
+
+  @override
+  AppState reduce() {
+    final searchedPokemons =
+        state.pokemons.filter((pokemon) => pokemon.name.contains(searchInput.toLowerCase())).toList();
+
+    return state.copyWith(searchedPokemons: searchedPokemons);
+  }
+}
+
 /// Disposes the state of the PokemonDetailsPage if the user goes back to the overview page
 class ClearPokemonDetailsAction extends ReduxAction<AppState> {
   @override
   AppState reduce() => state.copyWith(pokemonDetails: null);
+}
+
+/// Clears the searchedPokemon in store
+class ClearSearchedPokemonsAction extends ReduxAction<AppState> {
+  @override
+  AppState reduce() => state.copyWith(searchedPokemons: List.empty());
 }

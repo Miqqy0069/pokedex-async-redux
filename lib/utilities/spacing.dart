@@ -10,8 +10,8 @@ class VerticalSpace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-    height: height,
-  );
+        height: height,
+      );
 }
 
 class HorizontalSpace extends StatelessWidget {
@@ -24,6 +24,6 @@ class HorizontalSpace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-    width: width,
-  );
+        width: width,
+      );
 }

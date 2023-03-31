@@ -20,3 +20,4 @@ const weightLabel = 'Weight';
 const heightLabel = 'Height';
 const pokemonInformationLabel = 'Pokemon Information';
 const pokemonDetailsAppbarTitle = 'Pokemon Details';
+const searchErrorMessage = 'No search results found!';
