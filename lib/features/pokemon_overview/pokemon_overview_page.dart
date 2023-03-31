@@ -7,19 +7,19 @@ import 'package:pokedex_async_redux/utilities/async.dart';
 import 'package:pokedex_async_redux/utilities/constants.dart';
 import 'package:pokedex_async_redux/utilities/spacing.dart';
 
-class PokemonOverviewPage extends StatefulWidget {
+class PokemonOverviewPage<T> extends StatefulWidget {
   const PokemonOverviewPage({
     required this.pokemons,
     required this.searchedPokemons,
-    required this.filterPokemons,
-    required this.clearSearchedPokemons,
+    required this.onClearSearchedPokemons,
+    required this.onSearchPokemons,
     Key? key,
   }) : super(key: key);
 
   final Async<List<Pokemon>> pokemons;
-  final Async<List<Pokemon>> searchedPokemons;
-  final VoidCallback clearSearchedPokemons;
-  final Function(String) filterPokemons;
+  final List<Pokemon> searchedPokemons;
+  final VoidCallback onClearSearchedPokemons;
+  final ValueChanged<T> onSearchPokemons;
 
   @override
   State<PokemonOverviewPage> createState() => _PokemonOverviewPageState();
@@ -33,15 +33,17 @@ class _PokemonOverviewPageState extends State<PokemonOverviewPage> {
   @override
   void initState() {
     super.initState();
+
+    _searchPokemonController = TextEditingController()..addListener(_onSearchPokemons);
     isSearching = false;
-    _searchPokemonController = TextEditingController();
   }
 
   @override
   void dispose() {
-    widget.clearSearchedPokemons();
+    _onClearSearchedPokemons();
     _searchPokemonController.dispose();
     _debounceDuration?.cancel();
+
     super.dispose();
   }
 
@@ -55,25 +57,23 @@ class _PokemonOverviewPageState extends State<PokemonOverviewPage> {
           children: [
             SearchBar(
               searchController: _searchPokemonController,
-              onClear: _clearSearchedPokemons,
-              onChanged: _onSearchBarInputValueChanged,
+              onClearSearchText: _clearSearchedPokemons,
             ),
             const VerticalSpace(height: 15.0),
             Expanded(
               child: isSearching
-                  ? widget.searchedPokemons.when(
-                      (data) => PokemonGridviewBuilder(pokemons: data),
-                      loading: () => const Center(child: CircularProgressIndicator()),
-                      error: (noSearchResultsFoundMessage) {
-                        return Center(child: Text(noSearchResultsFoundMessage ?? emptyString));
-                      },
+                  ? PokemonGridviewBuilder(
+                      pokemons: widget.searchedPokemons,
+                      isSearching: true,
                     )
                   : widget.pokemons.when(
                       (data) => PokemonGridviewBuilder(pokemons: data),
                       loading: () => const Center(child: CircularProgressIndicator()),
                       error: (errorMessage) {
-                        WidgetsBinding.instance.addPostFrameCallback(
-                            (_) => _showErrorMessageSnackBar(context, errorMessage ?? emptyString));
+                        WidgetsBinding.instance.addPostFrameCallback((_) => _showErrorMessageSnackBar(
+                              context,
+                              errorMessage ?? emptyString,
+                            ));
                         return Text(errorMessage!);
                       },
                     ),
@@ -94,21 +94,23 @@ class _PokemonOverviewPageState extends State<PokemonOverviewPage> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  void _clearSearchedPokemons() {
-    widget.clearSearchedPokemons;
-    setState(() {
-      _searchPokemonController.text = emptyString;
-      isSearching = false;
-    });
+  void _onSearchPokemons() {
+    if (_debounceDuration?.isActive ?? false) _debounceDuration?.cancel();
+    _debounceDuration = Timer(const Duration(milliseconds: 500), () => _searchPokemons());
   }
 
-  void _onSearchBarInputValueChanged(String searchInput) {
-    _debounceDuration = Timer(
-      const Duration(milliseconds: 500),
-      () => setState(() {
-        widget.filterPokemons(searchInput);
-        isSearching = true;
-      }),
-    );
+  void _searchPokemons() {
+    widget.onSearchPokemons(_searchPokemonController.text);
+    isSearching = true;
+  }
+
+  void _clearSearchedPokemons() {
+    widget.onClearSearchedPokemons;
+    _searchPokemonController.text = emptyString;
+    setState(() => isSearching = false);
+  }
+
+  void _onClearSearchedPokemons() {
+    if (widget.searchedPokemons.isNotEmpty) widget.onClearSearchedPokemons;
   }
 }

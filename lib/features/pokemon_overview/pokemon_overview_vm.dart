@@ -11,9 +11,9 @@ class PokemonOverviewVmFactory extends VmFactory<AppState, PokemonOverviewConnec
   @override
   Vm fromStore() => PokemonOverviewVm(
         pokemons: _pokemons(),
-        searchedPokemons: searchedPokemons(),
-        getFilteredPokemons: (searchInput) => _getFilteredPokemons(searchInput),
-        clearSearchedPokemons: _clearSearchedPokemons,
+        searchedPokemons: _searchedPokemons(),
+        onSearchPokemons: _onSearchPokemons,
+        onClearSearchedPokemons: _clearSearchedPokemons,
       );
 
   Async<List<Pokemon>> _pokemons() {
@@ -29,20 +29,26 @@ class PokemonOverviewVmFactory extends VmFactory<AppState, PokemonOverviewConnec
     return Async(state.searchedPokemons);
   }
 
-  void _getFilteredPokemons(String searchInput) => dispatchSync(SearchPokemonsAction(searchInput: searchInput));
+  void _onSearchPokemons(searchInput) => dispatchSync(SearchPokemonsAction(searchInput: searchInput));
+
   void _clearSearchedPokemons() => dispatchSync(ClearSearchedPokemonsAction());
+
+  List<Pokemon> _searchedPokemons() => state.searchedPokemons;
 }
 
-class PokemonOverviewVm extends Vm {
+class PokemonOverviewVm<T> extends Vm {
   PokemonOverviewVm({
     required this.searchedPokemons,
-    required this.clearSearchedPokemons,
-    required this.getFilteredPokemons,
+    required this.onClearSearchedPokemons,
+    required this.onSearchPokemons,
     required this.pokemons,
-  }) : super(equals: [pokemons, searchedPokemons]);
+  }) : super(equals: [
+          pokemons,
+          searchedPokemons,
+        ]);
 
   final Async<List<Pokemon>> pokemons;
-  final Async<List<Pokemon>> searchedPokemons;
-  final VoidCallback clearSearchedPokemons;
-  final Function(String) getFilteredPokemons;
+  final List<Pokemon> searchedPokemons;
+  final VoidCallback onClearSearchedPokemons;
+  final ValueChanged<T> onSearchPokemons;
 }
