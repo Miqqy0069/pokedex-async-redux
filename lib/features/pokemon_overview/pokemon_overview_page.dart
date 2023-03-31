@@ -7,7 +7,7 @@ import 'package:pokedex_async_redux/utilities/async.dart';
 import 'package:pokedex_async_redux/utilities/constants.dart';
 import 'package:pokedex_async_redux/utilities/spacing.dart';
 
-class PokemonOverviewPage<T> extends StatefulWidget {
+class PokemonOverviewPage extends StatefulWidget {
   const PokemonOverviewPage({
     required this.pokemons,
     required this.searchedPokemons,
@@ -19,7 +19,7 @@ class PokemonOverviewPage<T> extends StatefulWidget {
   final Async<List<Pokemon>> pokemons;
   final List<Pokemon> searchedPokemons;
   final VoidCallback onClearSearchedPokemons;
-  final ValueChanged<T> onSearchPokemons;
+  final ValueChanged onSearchPokemons;
 
   @override
   State<PokemonOverviewPage> createState() => _PokemonOverviewPageState();
@@ -96,7 +96,7 @@ class _PokemonOverviewPageState extends State<PokemonOverviewPage> {
 
   void _onSearchPokemons() {
     if (_debounceDuration?.isActive ?? false) _debounceDuration?.cancel();
-    _debounceDuration = Timer(const Duration(milliseconds: 500), () => _searchPokemons());
+    _debounceDuration = Timer(const Duration(milliseconds: 500), _searchPokemons);
   }
 
   void _searchPokemons() {
@@ -106,7 +106,7 @@ class _PokemonOverviewPageState extends State<PokemonOverviewPage> {
 
   void _clearSearchedPokemons() {
     widget.onClearSearchedPokemons;
-    _searchPokemonController.text = emptyString;
+    _searchPokemonController.clear();
     setState(() => isSearching = false);
   }
 

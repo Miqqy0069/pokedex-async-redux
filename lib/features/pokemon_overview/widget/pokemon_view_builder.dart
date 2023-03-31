@@ -16,6 +16,7 @@ class PokemonGridviewBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (pokemons.isEmpty && isSearching) return const Center(child: Text(searchErrorMessage));
+
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,

@@ -36,7 +36,7 @@ class GetPokemonDetailsAction extends LoadingAction {
   }
 }
 
-///  Searching Pokemon Action
+/// Searching specific pokemon from pokemon api
 class SearchPokemonsAction extends ReduxAction<AppState> {
   SearchPokemonsAction({required this.searchInput});
 
@@ -57,7 +57,7 @@ class ClearPokemonDetailsAction extends ReduxAction<AppState> {
   AppState reduce() => state.copyWith(pokemonDetails: null);
 }
 
-/// Clears the Searched Pokemon
+/// Clears the searchedPokemon in store
 class ClearSearchedPokemonsAction extends ReduxAction<AppState> {
   @override
   AppState reduce() => state.copyWith(searchedPokemons: List.empty());
